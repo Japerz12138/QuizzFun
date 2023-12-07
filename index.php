@@ -117,6 +117,10 @@
                                 <button type="button" class="btn btn-primary">Play</button>
                             </div>
                         </div>
+                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                            NEW
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
                     </div>
                 </div>
                 <div class="col">
@@ -131,6 +135,10 @@
                                 <button type="button" class="btn btn-primary">Play</button>
                             </div>
                         </div>
+                        <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
+                            NEW
+                            <span class="visually-hidden">unread messages</span>
+                        </span>
                     </div>
                 </div>
                 <div class="col">
