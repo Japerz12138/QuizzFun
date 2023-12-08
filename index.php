@@ -3,7 +3,8 @@
 
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
-<head><script src="./stylesheet/js/color-modes.js"></script>
+<head>
+    <script src="./stylesheet/js/color-modes.js"></script>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,7 +13,6 @@
     <meta name="generator" content="Hugo 0.118.2">
     <title>QuizzFun</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
     <script src="https://kit.fontawesome.com/0f54c6fb31.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="./stylesheet/css/bootstrap.min.css" rel="stylesheet">
