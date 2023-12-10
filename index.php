@@ -1,4 +1,9 @@
 <?php
+if (isset($_GET['submit'])) {
+    // Form submitted, redirect to the quiz page
+    header("Location: quiz.php");
+    exit;
+}
 ?>
 
 <!doctype html>
@@ -115,8 +120,9 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <form id="myForm" action="./quiz.php" method="post">
-                                    <input class="btn btn-primary" type="submit" name="submit" value="Play">
+                                <form id="myForm" action="./quiz.php" method="get">
+                                    <button type="submit" class="btn btn-primary">Play</button>
+                                    <input type="hidden" name="quiztitle" value="animecompherensive">
                                 </form>
                                 <script>
                                     const playButton = document.querySelector('.btn btn-primary');
@@ -125,16 +131,7 @@
                                         document.getElementById('myForm').submit();
                                     });
                                 </script>
-                                <?php
-                                if (isset($_POST['submit'])) {
-                                    // Form submitted, redirect to the quiz page
-                                    header("Location: quiz.php");
-                                    exit;
-                                }
-                                ?>
                             </div>
-
-
                         </div>
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                             NEW
@@ -151,7 +148,18 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                <button type="button" class="btn btn-primary">Play</button>
+                                <form id="secondForm" action="./quiz.php" method="get">
+                                    <button type="submit" class="btn btn-primary">Play</button>
+                                    <input type="hidden" name="quiztitle" value="animecharacters">
+                                </form>
+                                <script>
+                                    const playButton = document.querySelector('.btn btn-primary');
+
+                                    playButton.addEventListener('click', function() {
+                                        document.getElementById('secondForm').submit();
+                                    });
+                                </script>
+
                             </div>
                         </div>
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
