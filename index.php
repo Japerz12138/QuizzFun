@@ -103,7 +103,7 @@ if (isset($_GET['submit'])) {
                 <p>
                     <!-- TODO: Make a About page!-->
                     <a href="#" class="btn btn-primary my-2">About</a>
-                    <a href="https://github.com/Japerz12138/QuizzFun" class="btn btn-secondary my-2">Star Our GitHub!</a>
+                    <a href="https://github.com/Japerz12138/QuizzFun" class="btn btn-secondary my-2"><i class="fa-solid fa-star"></i>Star Our GitHub!</a>
                 </p>
             </div>
         </div>
