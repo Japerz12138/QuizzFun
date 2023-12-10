@@ -115,9 +115,8 @@
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                 </div>
-                                    <button  type="button" class="btn btn-primary">Play</button>
                                 <form id="myForm" action="./quiz.php" method="post">
-                                    <input type="submit" name="submit" value="Play">
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Play">
                                 </form>
                                 <script>
                                     const playButton = document.querySelector('.btn btn-primary');
