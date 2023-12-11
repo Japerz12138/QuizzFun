@@ -6,6 +6,7 @@ $selectionThree = "Selection 3";
 $selectionFour = "Selection 4";
 $currentQuestionNum = 0;
 $totalQuestionNum = 0;
+$correctQuestionNum = 0;
 ?>
 
 <!DOCTYPE html>
