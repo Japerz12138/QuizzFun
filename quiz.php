@@ -30,7 +30,6 @@ if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
                             var_dump($rowQuestions);
                             $question = $rowQuestions["question_text"];
                             // Process other values as needed
-
                             // Render HTML inside the loop
                             renderHTML($question);
                         }
