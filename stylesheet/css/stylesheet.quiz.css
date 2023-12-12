@@ -428,6 +428,10 @@ img,video{
 .p-6{
     padding:1.5rem
 }
+/*Jack Customized padding for next button*/
+.bp-7{
+    padding:1.0rem
+}
 .px-6{
     padding-left:1.5rem;
     padding-right:1.5rem

@@ -150,11 +150,28 @@ function renderHTML($question) {
                         </div>
 
                         <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white"><?=$selectionFour?></h2>
-
                     </div>
                 </a>
             </div>
         </div>
+
+        <div class="max-w-7xl mx-auto p-6 lg:p-8">
+            <a href="#" class="scale-100 bp-7 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-blue-500 items-center justify-center">
+                <h2 class="font-semibold text-gray-900 dark:text-white">Next</h2>
+                <!-- Your SVG Code -->
+                <svg width="30px" height="30px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#0c64e5" transform="rotate(0)" class="ml-2">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.15"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path d="M12 22.4199C17.5228 22.4199 22 17.9428 22 12.4199C22 6.89707 17.5228 2.41992 12 2.41992C6.47715 2.41992 2 6.89707 2 12.4199C2 17.9428 6.47715 22.4199 12 22.4199Z" stroke="#0c64e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M10.5596 8.41992L13.6196 11.29C13.778 11.4326 13.9047 11.6068 13.9914 11.8015C14.0781 11.9962 14.123 12.2068 14.123 12.4199C14.123 12.633 14.0781 12.8439 13.9914 13.0386C13.9047 13.2332 13.778 13.4075 13.6196 13.55L10.5596 16.4199" stroke="#0c64e5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </g>
+                </svg>
+            </a>
+        </div>
+
+
+
 
         <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
             <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
