@@ -122,7 +122,7 @@ if (isset($_GET['submit'])) {
                                 </div>
                                 <form id="myForm" action="./quiz.php" method="get">
                                     <button type="submit" class="btn btn-primary">Play</button>
-                                    <input type="hidden" name="quiztitle" value="animecompherensive">
+                                    <input type="hidden" name="quiztitle" value="animecomprehensive">
                                 </form>
                                 <script>
                                     const playButton = document.querySelector('.btn btn-primary');

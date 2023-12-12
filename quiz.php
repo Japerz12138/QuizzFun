@@ -1,15 +1,69 @@
-<?php
-$question = "Question Here";
-$selectionOne = "Selection 1";
-$selectionTwo = "Selection 2";
-$selectionThree = "Selection 3";
-$selectionFour = "Selection 4";
-$currentQuestionNum = 0;
-$totalQuestionNum = 0;
-$correctQuestionNum = 0;
-?>
 
-<!DOCTYPE html>
+<?php
+require_once "./functions/connections.php";
+$pdo = getConnection();
+$quizName = $_GET['quiztitle'];
+echo $quizName;
+
+// Fetch quiz details
+$sqlQuiz = "SELECT * FROM quizzes WHERE quiz_name = :quizName;";
+if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
+    $stmtQuiz->bindParam(':quizName', $quizName, PDO::PARAM_STR);
+    if ($stmtQuiz->execute()) {
+        if ($stmtQuiz->rowCount() >= 1) {
+            $haveRows = true;
+            while ($rowQuiz = $stmtQuiz->fetch(PDO::FETCH_ASSOC)) {
+                echo $rowQuiz["quiz_name"];
+                var_dump($rowQuiz);
+                // Fetch questions using JOIN
+                $sqlQuestions = "SELECT quiz_name, question_text
+                                 FROM quizzes
+                                 INNER JOIN questions ON quizzes.quiz_id = questions.quiz_id
+                                 WHERE quizzes.quiz_id = :quizId"; // Replace with the actual common column
+
+                if ($stmtQuestions = $pdo->prepare($sqlQuestions)) {
+                    $stmtQuestions->bindParam(':quizId', $rowQuiz['quiz_id'], PDO::PARAM_INT);
+
+                    if ($stmtQuestions->execute()) {
+                        while ($rowQuestions = $stmtQuestions->fetch(PDO::FETCH_ASSOC)) {
+                            // Access values from the linked tables
+                            var_dump($rowQuestions);
+                            $question = $rowQuestions["question_text"];
+                            // Process other values as needed
+
+                            // Render HTML inside the loop
+                            renderHTML($question);
+                        }
+                    } else {
+                        echo "Error executing question query";
+                    }
+                } else {
+                    echo "Error preparing question query";
+                }
+            }
+        } else {
+            echo "No rows for the quiz";
+        }
+    } else {
+        echo "Error executing quiz query";
+    }
+} else {
+    $db_error = "Error preparing quiz query";
+}
+
+// Function to render HTML
+function renderHTML($question) {
+    // Rest of your code for HTML display
+    $selectionOne = "Selection 1";
+    $selectionTwo = "Selection 2";
+    $selectionThree = "Selection 3";
+    $selectionFour = "Selection 4";
+    $currentQuestionNum = 0;
+    $totalQuestionNum = 0;
+    $correctQuestionNum = 0;
+    ?>
+
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -122,3 +176,4 @@ $correctQuestionNum = 0;
 </div>
 </body>
 </html>
+<?php } ?>
