@@ -1,4 +1,3 @@
-
 <?php
 require_once "./functions/connections.php";
 $pdo = getConnection();
@@ -16,10 +15,9 @@ if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
                 echo $rowQuiz["quiz_name"];
                 var_dump($rowQuiz);
                 // Fetch questions using JOIN
-                $sqlQuestions = "SELECT quiz_name, question_text
-                                 FROM quizzes
-                                 INNER JOIN questions ON quizzes.quiz_id = questions.quiz_id
-                                 WHERE quizzes.quiz_id = :quizId"; // Replace with the actual common column
+                // Fetch questions using JOIN
+                $sqlQuestions = "SELECT questions.question_id, quiz_name, question_text FROM quizzes INNER JOIN questions ON quizzes.quiz_id = questions.quiz_id WHERE quizzes.quiz_id = :quizId";
+                // Replace with the actual common column
 
                 if ($stmtQuestions = $pdo->prepare($sqlQuestions)) {
                     $stmtQuestions->bindParam(':quizId', $rowQuiz['quiz_id'], PDO::PARAM_INT);
@@ -31,7 +29,7 @@ if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
                             $question = $rowQuestions["question_text"];
                             // Process other values as needed
                             // Render HTML inside the loop
-                            renderHTML($question);
+                            renderHTML($question, $pdo, $rowQuestions['question_id']);
                         }
                     } else {
                         echo "Error executing question query";
@@ -39,7 +37,8 @@ if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
                 } else {
                     echo "Error preparing question query";
                 }
-            }
+
+            } // <-- Closing brace for the while loop
         } else {
             echo "No rows for the quiz";
         }
@@ -50,17 +49,49 @@ if ($stmtQuiz = $pdo->prepare($sqlQuiz)) {
     $db_error = "Error preparing quiz query";
 }
 
-// Function to render HTML
-function renderHTML($question) {
-    // Rest of your code for HTML display
-    $selectionOne = "Selection 1";
-    $selectionTwo = "Selection 2";
-    $selectionThree = "Selection 3";
-    $selectionFour = "Selection 4";
-    $currentQuestionNum = 0;
-    $totalQuestionNum = 0;
-    $correctQuestionNum = 0;
-    ?>
+function renderHTML($question, $pdo, $questionId) {
+    // ... (your existing HTML code)
+
+    // Fetch selections using JOIN
+    $sqlSelections = "SELECT selection_text
+                     FROM selections
+                     WHERE question_id = :selectionId";
+
+    if ($stmtSelect = $pdo->prepare($sqlSelections)) {
+        $stmtSelect->bindParam(':selectionId', $questionId, PDO::PARAM_INT);
+
+        if ($stmtSelect->execute()) {
+            // Initialize variables for selections
+            $selectionOne = $selectionTwo = $selectionThree = $selectionFour = "";
+
+            // Fetch distinct values for each selection
+            $rowSelections = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+
+            // Assign values to variables
+            if (count($rowSelections) >= 1) {
+                $selectionOne = $rowSelections[0]["selection_text"];
+            }
+            if (count($rowSelections) >= 2) {
+                $selectionTwo = $rowSelections[1]["selection_text"];
+            }
+            if (count($rowSelections) >= 3) {
+                $selectionThree = $rowSelections[2]["selection_text"];
+            }
+            if (count($rowSelections) >= 4) {
+                $selectionFour = $rowSelections[3]["selection_text"];
+            }
+
+            // Process other values as needed
+            // Display selection text in your HTML
+
+        } else {
+            echo "Error executing selection query";
+        }
+    } else {
+        echo "Error preparing selection query";
+    }
+?>
+
 
     <!DOCTYPE html>
 <html lang="en">
