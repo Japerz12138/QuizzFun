@@ -1,6 +1,6 @@
 <?php
 $fanum = 1;
-$questionPercentage = $currentQuestionNum / $totalQuestionNum * 100;
+$questionPercentage = number_format($currentQuestionNum / $totalQuestionNum * 100, 1);
 ?>
 
 <!DOCTYPE html>
