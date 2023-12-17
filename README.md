@@ -11,5 +11,5 @@ bootstrap to provide a modern look and feel.
 
 - Jack Ma (https://github.com/Japerz12138)
 - Christian Terborg (https://github.com/Classroomcrisis)
-
+- Manpreet Singh (https://github.com/Manp123)
 
