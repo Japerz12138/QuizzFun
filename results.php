@@ -4,15 +4,17 @@
 <?php
 session_start();
 
-// Include database connection file
+if (!isset($_POST['question_bank_id'])) {
+    // Redirect to quiz.php if question_bank_id is not provided
+    header('Location: quiz.php');
+    exit();
+}
+
 require_once './functions/db_connection.php';
 
-// Retrieve questions and question bank ID from the session
 $questions = $_SESSION['questions'];
 
-// Retrieve question bank ID from the POST data
 $questionBankId = isset($_POST['question_bank_id']) ? (int)$_POST['question_bank_id'] : 1;
-
 
 // Function to calculate the score
 function calculateScore($userAnswers, $questions): int
@@ -56,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="./stylesheet/css/bootstrap.min.css" rel="stylesheet">
     <link href="./stylesheet/css/stylesheet.results.css" rel="stylesheet">
 
-    <!-- Card Animation JS Code -->
+    <!-- Card Animation JS Code, Come on this is okay right? Just animation tho!-->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.card');
@@ -131,7 +133,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <div class="content-container">
         <main class="px-3">
 
-
             <div class="container my-2">
                 <div class="p-5 text-center bg-body-tertiary rounded-3">
                     <h1><i class="fa-solid fa-square-poll-vertical"></i> Results</h1>
@@ -205,9 +206,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
-
-
-
 
     <footer class="mt-auto text-white-50">
         Share result to your friends! But if they want to play? Don't tell them answers yet!

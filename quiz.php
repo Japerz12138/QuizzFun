@@ -4,7 +4,12 @@
 <?php
 session_start();
 
-// Include database connection file
+if (!isset($_GET['question_bank_id'])) {
+    // Redirect to index.php if question_bank_id is not provided
+    header('Location: index.php');
+    exit();
+}
+
 require_once './functions/db_connection.php';
 
 // Get question bank ID from the query parameter
@@ -162,32 +167,42 @@ $_SESSION['question_bank_id'] = $questionBankId;
                 </div>
 
                 <div class="position-relative mx-auto p-3">
-                <h3 class="text-body-emphasis text-center">
-                    <?php echo htmlspecialchars($question['question']); ?>
-                </h3>
+                    <h3 class="text-body-emphasis text-center">
+                        <?php echo htmlspecialchars($question['question']); ?>
+                    </h3>
                 </div>
 
-                <?php for ($optionIndex = 1; $optionIndex <= 4; $optionIndex++): ?>
-                    <?php $optionImageKey = 'option' . $optionIndex . '_image_path'; ?>
-                <!-- FOR IMAGE SELECTIONS -->
-                    <?php if ($question[$optionImageKey]): ?>
-                        <div class="position-relative">
-                            <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="answer[<?php echo $index; ?>]" id="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>" value="<?php echo $optionIndex; ?>">
-                            <label class="list-group-item py-3 pe-5 d-flex justify-content-center align-items-center" for="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>">
+                <?php if ($question['question_image_path']): ?>
+                    <!-- Display question image if available -->
+                    <div class="position-relative text-center">
+                        <img src="<?php echo $question['question_image_path']; ?>" alt="Question Image" class="rounded img-fluid mb-3 mx-auto" style="width: 180px;height: 100px;">
+                    </div>
+                <?php endif; ?>
+
+                <?php
+                // Randomize the order of options
+                $options = range(1, 4);
+                shuffle($options);
+                ?>
+
+                <?php foreach ($options as $optionIndex): ?>
+                    <?php
+                    $optionImageKey = 'option' . $optionIndex . '_image_path';
+                    ?>
+
+                    <div class="position-relative">
+                        <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="answer[<?php echo $index; ?>]" id="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>" value="<?php echo $optionIndex; ?>">
+                        <label class="list-group-item py-3 pe-5" for="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>">
+                            <?php if ($question[$optionImageKey]): ?>
+                                <!-- FOR IMAGE SELECTIONS -->
                                 <img src="<?php echo $question[$optionImageKey]; ?>" alt="Option <?php echo $optionIndex; ?>" style="width:200px;height:140px;" class="rounded mx-auto">
-                            </label>
-                        </div>
-                <!-- FOR NON-IMAGE SELECTIONS -->
-                    <?php else: ?>
-                        <div class="position-relative">
-                            <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="answer[<?php echo $index; ?>]" id="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>" value="<?php echo $optionIndex; ?>">
-                            <label class="list-group-item py-3 pe-5" for="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>">
+                            <?php else: ?>
+                                <!-- FOR NON-IMAGE SELECTIONS -->
                                 <strong class="fw-semibold"><?php echo htmlspecialchars($question['option' . $optionIndex]); ?></strong>
-<!--                                <span class="d-block small opacity-75">Option --><?php //echo $optionIndex; ?><!--</span>-->
-                            </label>
-                        </div>
-                    <?php endif; ?>
-                <?php endfor; ?>
+                            <?php endif; ?>
+                        </label>
+                    </div>
+                <?php endforeach; ?>
 
             </div>
         </div>
@@ -196,11 +211,9 @@ $_SESSION['question_bank_id'] = $questionBankId;
 
     <div class="d-grid gap-2 col-6 mx-auto p-5">
         <button type="Submit" value="Submit" class="btn btn-primary btn-lg">Submit <i class="fa-solid fa-check"></i></button>
+        <input type="hidden" name="question_bank_id" value="<?=$questionBankId?>">
     </div>
 </form>
-
-
-
 
 <script src="./stylesheet/js/bootstrap.bundle.js"></script>
 
