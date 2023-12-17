@@ -1,9 +1,42 @@
+<!-- results.php -->
+<!-- Author: Jack / Christian -->
+
 <?php
-$correctQuestionNum = 0;
-$totalQuestionNum = 0;
+session_start();
+
+// Include database connection file
+require_once './functions/db_connection.php';
+
+// Retrieve questions and question bank ID from the session
+$questions = $_SESSION['questions'];
+$questionBankId = $_SESSION['question_bank_id'];
+
+// Function to calculate the score
+function calculateScore($userAnswers, $questions) {
+    $score = 0;
+    foreach ($questions as $index => $question) {
+        if (isset($userAnswers[$index]) && $userAnswers[$index] == $question['correct_option']) {
+            $score++;
+        }
+    }
+    return $score;
+}
+
+$pdo = getConnection();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Calculate the score
+    $score = calculateScore($_POST['answer'], $questions);
+
+    // Save the score and question bank ID in the session
+    $_SESSION['score'] = $score;
+    $_SESSION['question_bank_id'] = $questionBankId;
+}
+
 ?>
-<!doctype html>
-<html lang="en" class="h-100" data-bs-theme="auto">
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
 <head>
     <script src="./stylesheet/js/color-modes.js"></script>
 
@@ -32,9 +65,8 @@ $totalQuestionNum = 0;
         });
 
     </script>
-
 </head>
-<body class="d-flex h-100 text-center text-bg-dark">
+<body class="d-flex h-100 text-center">
 
 
 <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -95,10 +127,10 @@ $totalQuestionNum = 0;
     <div class="content-container">
         <main class="px-3">
             <h1><i class="fa-solid fa-square-poll-vertical"></i> Results</h1>
-            <p class="lead"><?=$correctQuestionNum?> / <?=$totalQuestionNum?></p>
-            <p class="lead">
-                <a href="./index.php" class="btn btn-lg btn-light fw-bold border-white bg-white">Back to QuizzFun</a>
-            </p>
+            <p class="lead">Your score: <?php echo isset($score) ? $score : 'Not calculated'; ?> / 10</p>
+            <form action="index.php" method="post">
+                <input type="submit" value="Choose Another Quiz" class="btn btn-primary">
+            </form>
         </main>
         <br>
 
@@ -107,47 +139,53 @@ $totalQuestionNum = 0;
 
     </div>
 
-    <!-- Card for CORRECT answers -->
-    <div class="card mb-3">
-        <div class="card-header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7ed321" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            Question 1
-        </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>Question Here</p>
-                <footer class="blockquote-footer">Answers Here!</footer>
-            </blockquote>
-        </div>
-    </div>
+    <?php if (isset($questions)): ?>
+        <?php foreach ($questions as $index => $question): ?>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <?php
+                    // Initialize $userSelection variable
+                    $userSelection = isset($_POST['answer'][$index]) ? htmlspecialchars($_POST['answer'][$index]) : null;
 
-    <!-- Card for NAH answers -->
-    <div class="card mb-3">
-        <div class="card-header">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#d0021b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <line x1="15" y1="9" x2="9" y2="15"></line>
-                <line x1="9" y1="9" x2="15" y2="15"></line>
-            </svg>
-            Question 2
-        </div>
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>Question Here</p>
-                <footer class="blockquote-footer">Answers Here!</footer>
-            </blockquote>
-        </div>
-    </div>
+                    $iconColor = ($userSelection == $question['correct_option']) ? '#7ed321' : '#d0021b';
+                    ?>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="<?php echo $iconColor; ?>" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <?php if ($userSelection == $question['correct_option']): ?>
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        <?php else: ?>
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="15" y1="9" x2="9" y2="15"></line>
+                            <line x1="9" y1="9" x2="15" y2="15"></line>
+                        <?php endif; ?>
+                    </svg>
+                    Question <?php echo $index + 1; ?>
+                </div>
+                <div class="card-body">
+                    <blockquote class="blockquote mb-0">
+                        <p><?php echo htmlspecialchars($question['question']); ?></p>
+                        <footer class="blockquote-footer">
+                            <?php
+                            $userSelectionIndex = htmlspecialchars($_POST['answer'][$index]);
+                            $userSelection = htmlspecialchars($question['option' . $userSelectionIndex]); ?>
+
+                            <p><?php echo 'Your selection: ' . $userSelection; ?></p>
+                            <p><?php echo ' (Correct Answer: ' . htmlspecialchars($question['option' . $question['correct_option']]) . ')'; ?> </p>
+
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
 
 
     <footer class="mt-auto text-white-50">
-        Share result to your friends! But if they wanna play? Don't tell them answers yet!
+        Share result to your friends! But if they want to play? Don't tell them answers yet!
     </footer>
-</div>
-<script src="./stylesheet/js/bootstrap.bundle.min.js"></script>
 
+    <script src="./stylesheet/js/bootstrap.bundle.js"></script>
+</div>
 </body>
 </html>
