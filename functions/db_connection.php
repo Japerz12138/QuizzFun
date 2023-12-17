@@ -5,7 +5,7 @@ Modify this to match your host, user, password, and database name
 const DB_SERVER = 'localhost';
 const DB_USERNAME = '';
 const DB_PASSWORD = '';
-const DB_NAME = 'quiz_bank';
+const DB_NAME = 'quizzfun_demo';
 
 function getConnection()
 {

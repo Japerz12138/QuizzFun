@@ -1,3 +1,6 @@
+<!-- index.php -->
+<!-- Author: Jack -->
+
 <?php
 if (isset($_GET['submit'])) {
     // Form submitted, redirect to the quiz page
@@ -118,24 +121,18 @@ if (isset($_GET['submit'])) {
                             <p class="card-text">This quiz contains comprehensive anime questions. Want to test your anime knowledge? Come and try and see how many answers you can get right!</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editWarning">Edit</button>
                                 </div>
-                                <form id="myForm" action="./quiz.php" method="get">
+                                <form id="AnimeComprehensive" action="./quiz.php" method="get">
                                     <button type="submit" class="btn btn-primary">Play</button>
-                                    <input type="hidden" name="quiztitle" value="animecomprehensive">
+                                    <input type="hidden" name="question_bank_id" value="1">
                                 </form>
-                                <script>
-                                    const playButton = document.querySelector('.btn btn-primary');
 
-                                    playButton.addEventListener('click', function() {
-                                        document.getElementById('myForm').submit();
-                                    });
-                                </script>
                             </div>
                         </div>
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                             NEW
-                            <span class="visually-hidden">unread messages</span>
+                            <span class="visually-hidden">NEW QUIZ</span>
                         </span>
                     </div>
                 </div>
@@ -146,25 +143,18 @@ if (isset($_GET['submit'])) {
                             <p class="card-text">Sometimes you remember the characters more clearly? Use the anime title to guess which anime character it is!</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editWarning">Edit</button>
                                 </div>
-                                <form id="secondForm" action="./quiz.php" method="get">
+                                <form id="AnimeCharters" action="./quiz.php" method="get">
                                     <button type="submit" class="btn btn-primary">Play</button>
-                                    <input type="hidden" name="quiztitle" value="animecharacters">
+                                    <input type="hidden" name="question_bank_id" value="2">
                                 </form>
-                                <script>
-                                    const playButton = document.querySelector('.btn btn-primary');
-
-                                    playButton.addEventListener('click', function() {
-                                        document.getElementById('secondForm').submit();
-                                    });
-                                </script>
 
                             </div>
                         </div>
                         <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-danger">
                             NEW
-                            <span class="visually-hidden">unread messages</span>
+                            <span class="visually-hidden">NEW QUIZ</span>
                         </span>
                     </div>
                 </div>
@@ -177,10 +167,27 @@ if (isset($_GET['submit'])) {
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" disabled>Edit</button>
                                 </div>
-                                <button type="button" class="btn btn-primary" disabled>Play</button>
+                                <button href="quiz.php?question_bank_id=2" class="btn btn-primary" disabled>Play</button>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editWarning" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Notification</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Quiz editing function is not enabled yet!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Okay lol</button>
                 </div>
             </div>
         </div>
