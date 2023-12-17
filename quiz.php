@@ -172,8 +172,8 @@ $_SESSION['question_bank_id'] = $questionBankId;
                     <?php if ($question[$optionImageKey]): ?>
                         <div class="position-relative">
                             <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="answer[<?php echo $index; ?>]" id="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>" value="<?php echo $optionIndex; ?>">
-                            <label class="list-group-item py-3 pe-5" for="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>">
-                                <img src="<?php echo $question[$optionImageKey]; ?>" alt="Option <?php echo $optionIndex; ?>" style="width:200px;height:120px;" class="rounded mx-auto">
+                            <label class="list-group-item py-3 pe-5 d-flex justify-content-center align-items-center" for="listGroupRadioGrid<?php echo $index . '_' . $optionIndex; ?>">
+                                <img src="<?php echo $question[$optionImageKey]; ?>" alt="Option <?php echo $optionIndex; ?>" style="width:200px;height:140px;" class="rounded mx-auto">
                             </label>
                         </div>
                 <!-- FOR NON-IMAGE SELECTIONS -->

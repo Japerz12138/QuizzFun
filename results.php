@@ -144,8 +144,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="card mb-3">
                 <div class="card-header">
                     <?php
-                    // Initialize $userSelection variable
+                    // Initialize $userSelection and $correctAnswer variables
                     $userSelection = isset($_POST['answer'][$index]) ? htmlspecialchars($_POST['answer'][$index]) : null;
+                    $correctAnswer = htmlspecialchars($question['option' . $question['correct_option']]);
 
                     $iconColor = ($userSelection == $question['correct_option']) ? '#7ed321' : '#d0021b';
                     ?>
@@ -164,20 +165,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="card-body">
                     <blockquote class="blockquote mb-0">
                         <p><?php echo htmlspecialchars($question['question']); ?></p>
+                        <?php
+                        $userSelectionIndex = htmlspecialchars($_POST['answer'][$index]);
+                        $userSelection = htmlspecialchars($question['option' . $userSelectionIndex]);
+                        ?>
+                        <?php if ($question['option' . $userSelectionIndex . '_image_path']): ?>
+                            <!-- Display user's selection image if available -->
+                            <p>Your Selection</p>
+                            <img src="<?php echo $question['option' . $userSelectionIndex . '_image_path']; ?>" alt="User's Selection" class="img-fluid mb-3">
+                        <?php endif; ?>
+                        <?php if ($question['option' . $question['correct_option'] . '_image_path']): ?>
+                            <!-- Display correct answer image if available -->
+                            <p>Correct Answer</p>
+                            <img src="<?php echo $question['option' . $question['correct_option'] . '_image_path']; ?>" alt="Correct Answer" class="img-fluid mb-3">
+                        <?php endif; ?>
                         <footer class="blockquote-footer">
-                            <?php
-                            $userSelectionIndex = htmlspecialchars($_POST['answer'][$index]);
-                            $userSelection = htmlspecialchars($question['option' . $userSelectionIndex]); ?>
-
                             <p><?php echo 'Your selection: ' . $userSelection; ?></p>
-                            <p><?php echo ' (Correct Answer: ' . htmlspecialchars($question['option' . $question['correct_option']]) . ')'; ?> </p>
-
+                            <p><?php echo 'Correct Answer: ' . $correctAnswer; ?> </p>
                         </footer>
                     </blockquote>
                 </div>
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
+
 
 
 
