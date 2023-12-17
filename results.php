@@ -9,10 +9,14 @@ require_once './functions/db_connection.php';
 
 // Retrieve questions and question bank ID from the session
 $questions = $_SESSION['questions'];
-$questionBankId = $_SESSION['question_bank_id'];
+
+// Retrieve question bank ID from the POST data
+$questionBankId = isset($_POST['question_bank_id']) ? (int)$_POST['question_bank_id'] : 1;
+
 
 // Function to calculate the score
-function calculateScore($userAnswers, $questions) {
+function calculateScore($userAnswers, $questions): int
+{
     $score = 0;
     foreach ($questions as $index => $question) {
         if (isset($userAnswers[$index]) && $userAnswers[$index] == $question['correct_option']) {
@@ -32,8 +36,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $_SESSION['score'] = $score;
     $_SESSION['question_bank_id'] = $questionBankId;
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
@@ -126,11 +130,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="content-container">
         <main class="px-3">
-            <h1><i class="fa-solid fa-square-poll-vertical"></i> Results</h1>
-            <p class="lead">Your score: <?php echo isset($score) ? $score : 'Not calculated'; ?> / 10</p>
-            <form action="index.php" method="post">
-                <input type="submit" value="Choose Another Quiz" class="btn btn-primary">
-            </form>
+
+
+            <div class="container my-2">
+                <div class="p-5 text-center bg-body-tertiary rounded-3">
+                    <h1><i class="fa-solid fa-square-poll-vertical"></i> Results</h1>
+                    <img src="./img/banner_<?=$questionBankId?>.png" alt="" class="rounded img-fluid" style="width: 800px;height: 120px;">
+                    <br><br>
+                    <h5 class="card-title">Your Score</h5>
+                    <?php if (isset($score)): ?>
+                        <p class="card-text display-3"><?php echo $score . '/' . count($questions); ?></p>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <div class="container my-3">
+                <form action="index.php" method="post">
+                    <input type="submit" value="Choose Another Quiz" class="btn btn-primary">
+                </form>
+            </div>
         </main>
         <br>
 
@@ -172,12 +189,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php if ($question['option' . $userSelectionIndex . '_image_path']): ?>
                             <!-- Display user's selection image if available -->
                             <p>Your Selection</p>
-                            <img src="<?php echo $question['option' . $userSelectionIndex . '_image_path']; ?>" alt="User's Selection" class="img-fluid mb-3">
+                            <img src="<?php echo $question['option' . $userSelectionIndex . '_image_path']; ?>" alt="User's Selection" class="rounded img-fluid mb-3" style="width: 150px;height: 150px;">
                         <?php endif; ?>
                         <?php if ($question['option' . $question['correct_option'] . '_image_path']): ?>
                             <!-- Display correct answer image if available -->
                             <p>Correct Answer</p>
-                            <img src="<?php echo $question['option' . $question['correct_option'] . '_image_path']; ?>" alt="Correct Answer" class="img-fluid mb-3">
+                            <img src="<?php echo $question['option' . $question['correct_option'] . '_image_path']; ?>" alt="Correct Answer" class="rounded img-fluid mb-3" style="width: 150px;height: 150px;">
                         <?php endif; ?>
                         <footer class="blockquote-footer">
                             <p><?php echo 'Your selection: ' . $userSelection; ?></p>

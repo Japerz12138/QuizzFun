@@ -151,6 +151,7 @@ $_SESSION['question_bank_id'] = $questionBankId;
 <div class="b-example-divider"></div>
 
 <form action="results.php" method="post">
+    <input type="hidden" name="question_bank_id" value="<?php echo $questionBankId; ?>">
     <?php foreach ($questions as $index => $question): ?>
         <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center">
             <div class="list-group list-group-radio d-grid gap-2 border-0">
