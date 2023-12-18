@@ -209,6 +209,8 @@ if (isset($_GET['submit'])) {
         </p>
         <p class="mb-1">NYIT Internet Programming Final Project</p>
         <p class="mb-0">TVアニメ「へやキャン△」公式サイト，&copy; あfろ・芳文社／野外活動委員会</p>
+        <p>&copy; 若木民喜/みつみ美里・甘露樹(アクアプラス)/16bitセンセーションAL PROJECT</p>
+        <p>Some of the images used on this website come from the Internet. If it infringes upon your copyright, please contact jackma12138@gmail.com to have it deleted.</p>
     </div>
 </footer>
 <script src="./stylesheet/js/bootstrap.bundle.min.js"></script>
