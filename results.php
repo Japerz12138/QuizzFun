@@ -51,12 +51,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.118.2">
-    <title>Quiz - Result</title>
+    <title>QuizzFun - Result</title>
 
     <script src="https://kit.fontawesome.com/0f54c6fb31.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
     <link href="./stylesheet/css/bootstrap.min.css" rel="stylesheet">
     <link href="./stylesheet/css/stylesheet.results.css" rel="stylesheet">
+
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
     <!-- Card Animation JS Code, Come on this is okay right? Just animation tho!-->
     <script>

@@ -54,6 +54,14 @@ $_SESSION['question_bank_id'] = $questionBankId;
     <link href="./stylesheet/css/stylesheet.quiz.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+    <link rel="apple-touch-icon" sizes="76x76" href="./favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+    <link rel="manifest" href="./favicon/site.webmanifest">
+    <link rel="mask-icon" href="./favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
     <!-- JQuery that can check if all the answer has been answered. -->
     <!-- Use Jquery just make life a bit easier, and I think this is the only place we use JQuery lol -->
     <script>
