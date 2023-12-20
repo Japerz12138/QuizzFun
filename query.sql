@@ -48,18 +48,18 @@ VALUES
     (1, 'In Puella Magi Madoka Magica, what is the color of Madoka Kaname (鹿目 まどか)''s soul gem?', '', 'Red', '', 'Pink', '', 'Yellow', '', 'Blue', '', 2),
     (1, 'In Fate/stay night: Unlimited Blade Works, what Rank is Shirou Emiya (衛宮 士郎)''s servant?', '', 'Saber', '', 'Archer', '', 'Assassin', '', 'Caster', '', 1),
     (1, 'In ReLife, how old does Arata Kaizaki(海崎 新太) return to?', '', '21', '', '20', '', '18', '', '17', '', 4),
-    (1, 'In Beyond the Boundary, what are Mirai Kuriyama(栗山 未来)''s abilities?', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
+    (1, 'In Beyond the Boundary, what are Mirai Kuriyama(栗山 未来)''s abilities?', '', 'Blood Control', '', 'Protection Shield', '', 'Puppeteer', '', 'Youmu Control', '', 3),
     (1, 'In Noragami, what is Yato(夜ト)''s first Shinki(artifact)?', '', 'Yuki (雪)', '', 'Tomo (伴)', '', 'Sakura (桜)', '', 'Hiiro (緋)', '', 4),
     (1, 'In JoJO''s Bizarre Adventure, what is the birth mark for Joestar''s bloodline?', '', 'Star', '', 'Hart', '', 'Hand', '', 'Square', '', 1),
     (1, 'What was μ''s debut song in Love Live! Season 1?', '', 'Susume→Tomorrow', '', 'START:DASH!!', '', 'Korekara no Someday', '', 'Bokura wa Ima no Naka de', '', 2),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3),
-    (1, 'In Pokémon (TV series), who is Ash''s first pokemon', '', 'Riolu', '', 'Pidgeot', '', 'Pikachu', '', 'Charmander', '', 3);
+    (1, 'In Summer Time Rendering, which of the following is Shadow''s ability?', '', 'Respawn', '', 'Teleport', '', 'Copy', '', 'Shadow Ball', '', 3),
+    (1, 'In Made in Abyss, the abyss in the center of the island also known as?', '', 'Netherworld', '', 'Endworld', '', 'Hell', '', 'The Big Hole', '', 1),
+    (1, 'In Sword Art Online, what is the name of the first-generation full-dive VR device?', '', 'Oculus 3', '', 'AmuSphere', '', 'Augma', '', 'NerveGear', '', 4),
+    (1, 'In Macross Delta, which fighter jet was flown by Hayate Immelman(ハヤテ・インメルマン)?', '', 'Sv-262Hs Draken III', '', 'VF-31J Siegfried', '', 'VF-17 Nightmare', '', 'VF-31 A Kairos', '', 2),
+    (1, 'In Baka and Test, how do Avatars(召喚獣) fight?', '', 'Subject Tests', '', 'Hacking', '', 'Emotional Damage', '', 'Magic', '', 1),
+    (1, 'In New Game! Which game company did Aoba Suzukaze(涼風 青葉) join?', '', 'Yuzu Soft', '', 'Square Unix', '', 'Ubisoft', '', 'Eagle Jump', '', 4),
+    (1, 'In Little Witch Academia, what is the name of the Academy?', '', 'Hogwarts School of Witchcraft and Wizardry', '', 'First High School', '', 'Luna Nova Magical Academy', '', 'Everdawn Spire Magical Academy', '', 3),
+    (1, 'In Guilty Crown, what type of void weapon does Inori Yuzuriha(楪 いのり) can be?', '', 'Longsword', '', 'Gun', '', 'Large Shears', '', 'Dual Swords', '', 1);
 
 
 INSERT INTO questions (question_bank_id, question, question_image_path, option1, option1_image_path, option2, option2_image_path, option3, option3_image_path, option4, option4_image_path, correct_option)

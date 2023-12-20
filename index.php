@@ -127,6 +127,10 @@ if (isset($_GET['submit'])) {
                         <img src="./img/quiz1_background.png" alt="Anime Comprehensive">
                         <div class="card-body">
                             <p class="card-text">This quiz contains comprehensive anime questions. Want to test your anime knowledge? Come and try and see how many answers you can get right!</p>
+                            <p>
+                                <span class="badge bg-secondary">Hard</span>
+                                <span class="badge bg-secondary">Anime</span>
+                            </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editWarning">Edit</button>
@@ -149,6 +153,10 @@ if (isset($_GET['submit'])) {
                         <img src="./img/quiz2_background.png" alt="Anime Characters">
                         <div class="card-body">
                             <p class="card-text">Sometimes you remember the characters more clearly? Use the anime title to guess which anime character it is!</p>
+                            <p>
+                                <span class="badge bg-secondary">Easy</span>
+                                <span class="badge bg-secondary">Anime</span>
+                            </p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#editWarning">Edit</button>
