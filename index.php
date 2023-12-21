@@ -2,6 +2,13 @@
 <!-- Author: Jack -->
 
 <?php
+require_once './functions/db_connection.php';
+$pdo = getConnection();
+
+// Query to get question bank data including the counter
+$stmt = $pdo->query("SELECT id, name, counter FROM question_banks");
+$questionBanks = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 if (isset($_GET['submit'])) {
     // Form submitted, redirect to the quiz page
     header("Location: quiz.php");
@@ -127,6 +134,9 @@ if (isset($_GET['submit'])) {
                         <img src="./img/quiz1_background.png" alt="Anime Comprehensive">
                         <div class="card-body">
                             <p class="card-text">This quiz contains comprehensive anime questions. Want to test your anime knowledge? Come and try and see how many answers you can get right!</p>
+                            <div class="badge bg-secondary text-wrap">
+                                Played Count: <?php echo $questionBanks[0]["counter"]; ?>
+                            </div>
                             <p>
                                 <span class="badge bg-secondary">Hard</span>
                                 <span class="badge bg-secondary">Anime</span>
@@ -153,6 +163,9 @@ if (isset($_GET['submit'])) {
                         <img src="./img/quiz2_background.png" alt="Anime Characters">
                         <div class="card-body">
                             <p class="card-text">Sometimes you remember the characters more clearly? Use the anime title to guess which anime character it is!</p>
+                            <div class="badge bg-secondary text-wrap">
+                                Played Count: <?php echo $questionBanks[1]["counter"]; ?>
+                            </div>
                             <p>
                                 <span class="badge bg-secondary">Easy</span>
                                 <span class="badge bg-secondary">Anime</span>

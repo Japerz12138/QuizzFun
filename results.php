@@ -37,6 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Save the score and question bank ID in the session
     $_SESSION['score'] = $score;
     $_SESSION['question_bank_id'] = $questionBankId;
+
+    $stmt = $pdo->prepare("UPDATE question_banks SET counter = counter + 1 WHERE id = :questionBankId");
+    $stmt->bindParam(':questionBankId', $questionBankId, PDO::PARAM_INT);
+    $stmt->execute();
 }
 ?>
 
